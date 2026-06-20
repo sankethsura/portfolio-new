@@ -11,11 +11,13 @@ export default function Reveal({
   delay = 0,
   y = 28,
   as = "div",
+  style,
 }) {
   const MotionTag = motion[as];
   return (
     <MotionTag
       className={className}
+      style={style}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-12% 0px -12% 0px" }}

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "motion/react";
+import { useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { projects, featuredProject } from "@/lib/data";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
@@ -10,13 +10,42 @@ const ease = [0.16, 1, 0.3, 1];
 
 function FeaturedCard() {
   const p = featuredProject;
+  const ref = useRef(null);
+
+  // cursor-driven 3D tilt
+  const mx = useMotionValue(0.5);
+  const my = useMotionValue(0.5);
+  const rotateX = useSpring(useTransform(my, [0, 1], [4.5, -4.5]), {
+    stiffness: 150,
+    damping: 18,
+  });
+  const rotateY = useSpring(useTransform(mx, [0, 1], [-5, 5]), {
+    stiffness: 150,
+    damping: 18,
+  });
+
+  const onMove = (e) => {
+    const r = ref.current?.getBoundingClientRect();
+    if (!r) return;
+    mx.set((e.clientX - r.left) / r.width);
+    my.set((e.clientY - r.top) / r.height);
+  };
+  const onLeave = () => {
+    mx.set(0.5);
+    my.set(0.5);
+  };
+
   return (
-    <Reveal className="mt-14 md:mt-24">
+    <Reveal className="mt-14 md:mt-24" style={{ perspective: 1200 }}>
       <motion.a
+        ref={ref}
         href={p.href}
         target="_blank"
         rel="noopener noreferrer"
         data-cursor="hover"
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         whileHover={{ y: -4 }}
         transition={{ duration: 0.5, ease }}
         className="group relative block overflow-hidden rounded-2xl border border-line bg-bg-2"

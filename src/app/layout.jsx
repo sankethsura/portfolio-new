@@ -2,6 +2,7 @@ import { Space_Grotesk, Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Cursor from "@/components/Cursor";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -72,6 +73,7 @@ export default function RootLayout({ children }) {
           etc.) inject attributes like cz-shortcut-listen onto <body> before
           React hydrates — this only silences that benign body-attribute noise. */}
       <body className="cursor-on" suppressHydrationWarning>
+        <ScrollProgress />
         <Cursor />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "motion/react";
 import { profile } from "@/lib/data";
 import Reveal, { RevealLine } from "./Reveal";
+import Magnetic from "./Magnetic";
 
 const links = [
   { label: "Email", value: profile.email, href: `mailto:${profile.email}` },
@@ -28,21 +28,19 @@ export default function Contact() {
         </h2>
 
         <Reveal delay={0.15}>
-          <a
-            href={`mailto:${profile.email}`}
-            className="group mt-12 inline-flex items-center gap-4 text-xl md:text-3xl"
-          >
-            <span className="border-b border-bg/30 pb-1 transition-colors group-hover:border-accent group-hover:text-accent">
-              {profile.email}
-            </span>
-            <motion.span
-              className="text-accent"
-              initial={{ x: 0 }}
-              whileHover={{ x: 6 }}
+          <Magnetic className="mt-12 inline-flex w-fit" strength={0.25}>
+            <a
+              href={`mailto:${profile.email}`}
+              className="group inline-flex items-center gap-4 text-xl md:text-3xl"
             >
-              ↗
-            </motion.span>
-          </a>
+              <span className="border-b border-bg/30 pb-1 transition-colors group-hover:border-accent group-hover:text-accent">
+                {profile.email}
+              </span>
+              <span className="text-accent transition-transform group-hover:translate-x-1.5">
+                ↗
+              </span>
+            </a>
+          </Magnetic>
         </Reveal>
 
         <div className="mt-20 grid grid-cols-2 gap-px border border-bg/15 bg-bg/15 md:grid-cols-4">

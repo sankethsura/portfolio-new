@@ -1,6 +1,20 @@
+"use client";
+
+import { motion } from "motion/react";
 import { skills } from "@/lib/data";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+
+const ease = [0.16, 1, 0.3, 1];
+
+const list = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.04 } },
+};
+const item = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
+};
 
 export default function Skills() {
   return (
@@ -18,16 +32,23 @@ export default function Skills() {
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               {group.title}
             </h3>
-            <ul className="flex flex-col">
-              {group.items.map((item) => (
-                <li
-                  key={item}
-                  className="group border-t border-line py-2.5 text-[0.95rem] text-ink-soft transition-colors last:border-b hover:text-accent"
+            <motion.ul
+              className="flex flex-col"
+              variants={list}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-10% 0px" }}
+            >
+              {group.items.map((skill) => (
+                <motion.li
+                  key={skill}
+                  variants={item}
+                  className="border-t border-line py-2.5 text-[0.95rem] text-ink-soft transition-colors duration-300 last:border-b hover:text-ink"
                 >
-                  {item}
-                </li>
+                  {skill}
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           </Reveal>
         ))}
       </div>

@@ -1,6 +1,7 @@
 import { about, profile } from "@/lib/data";
-import Reveal, { RevealLine } from "./Reveal";
+import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import ScrollStatement from "./ScrollStatement";
 
 const facts = [
   { k: "Role", v: "Senior Software Engineer" },
@@ -20,18 +21,7 @@ export default function About() {
 
       <div className="mt-14 grid gap-10 md:mt-24 md:grid-cols-12">
         <div className="flex flex-col justify-between gap-12 md:col-span-7 md:col-start-1">
-          <p className="font-display text-[clamp(1.6rem,3.4vw,2.75rem)] font-medium leading-[1.12] tracking-tight">
-            <RevealLine>I turn complex AI workflows into</RevealLine>
-            <RevealLine delay={0.06}>
-              <span className="text-muted">fast, reliable, </span>
-              <span className="font-serif-acc italic text-accent lowercase">
-                production-grade
-              </span>
-            </RevealLine>
-            <RevealLine delay={0.12}>
-              <span className="text-muted">products people actually use.</span>
-            </RevealLine>
-          </p>
+          <ScrollStatement />
 
           <Reveal delay={0.1} className="grid grid-cols-2 gap-px bg-line">
             {facts.map((f) => (

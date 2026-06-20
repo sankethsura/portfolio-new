@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { profile } from "@/lib/data";
+import Magnetic from "./Magnetic";
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -76,19 +77,31 @@ export default function Hero() {
         transition={{ duration: 1, delay: 0.75, ease }}
         className="shell flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
       >
-        <p className="max-w-md text-base leading-relaxed text-ink-soft">
-          {profile.intro}
+        <p className="max-w-lg text-[1.05rem] leading-relaxed text-muted md:text-lg">
+          <span className="font-medium text-ink">Full-stack developer</span> with{" "}
+          <span className="font-medium text-ink">3+ years</span> shipping
+          production-grade apps on the{" "}
+          <span className="font-medium text-ink">MERN stack &amp; Next.js</span>,
+          integrating{" "}
+          <span className="font-medium text-ink">LLM-driven</span> features into
+          systems serving{" "}
+          <span className="font-serif-acc text-[1.15em] italic text-accent">
+            1M+ users
+          </span>{" "}
+          a month.
         </p>
-        <div className="flex items-center gap-4">
-          <a
-            href="#projects"
-            className="group inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-transform hover:-translate-y-0.5"
-          >
-            View work
-            <span className="transition-transform group-hover:translate-x-1">
-              →
-            </span>
-          </a>
+        <div className="flex items-center gap-5">
+          <Magnetic className="inline-flex">
+            <a
+              href="#projects"
+              className="group inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg"
+            >
+              View work
+              <span className="transition-transform group-hover:translate-x-1">
+                →
+              </span>
+            </a>
+          </Magnetic>
           <a
             href="#contact"
             className="link-sweep text-sm font-medium text-ink-soft"

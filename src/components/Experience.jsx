@@ -17,7 +17,7 @@ export default function Experience() {
             <article className="group grid gap-x-6 gap-y-8 border-t border-line py-12 md:grid-cols-12 md:gap-x-10 md:py-16">
               <div className="md:col-span-4">
                 <div className="flex items-center gap-3">
-                  <h3 className="font-display text-2xl font-medium tracking-tight md:text-3xl">
+                  <h3 className="font-display text-2xl font-medium tracking-tight transition-colors duration-300 group-hover:text-accent md:text-3xl">
                     {job.company}
                   </h3>
                   {job.current && (

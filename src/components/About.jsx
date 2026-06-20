@@ -23,10 +23,13 @@ export default function About() {
         <div className="flex flex-col justify-between gap-12 md:col-span-7 md:col-start-1">
           <ScrollStatement />
 
-          <Reveal delay={0.1} className="grid grid-cols-2 gap-px bg-line">
+          <Reveal
+            delay={0.1}
+            className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line"
+          >
             {facts.map((f) => (
-              <div key={f.k} className="bg-bg py-4 pr-4">
-                <p className="label mb-1">{f.k}</p>
+              <div key={f.k} className="bg-bg p-5">
+                <p className="label mb-1.5">{f.k}</p>
                 <p className="text-sm font-medium text-ink">{f.v}</p>
               </div>
             ))}

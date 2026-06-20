@@ -28,6 +28,29 @@ export const about = [
   "Now a Senior Software Engineer at YuVerse — a last-mile enterprise AI company building production AI for banking and financial services. Previously at Expertia AI, I helped build an AI-powered hiring platform end to end.",
 ];
 
+export const principles = [
+  {
+    n: "01",
+    title: "Ship production-grade",
+    body: "Code that survives real traffic. I build for reliability and scale — systems that have served 1M+ users a month, not demos that fall over in production.",
+  },
+  {
+    n: "02",
+    title: "AI-first, not bolted on",
+    body: "I design products around LLMs and automation from the ground up — orchestration, schema validation, and guardrails that make AI dependable in the real world.",
+  },
+  {
+    n: "03",
+    title: "Performance & SEO obsessed",
+    body: "Fast by default. SSR/SSG, Core Web Vitals, and search visibility are first-class concerns — because speed and discoverability drive real business outcomes.",
+  },
+  {
+    n: "04",
+    title: "Iterate from real usage",
+    body: "Ship a focused first version, learn from actual users and data, then expand. I'd rather validate the core than over-build features nobody asked for.",
+  },
+];
+
 export const skills = [
   {
     title: "Frontend",

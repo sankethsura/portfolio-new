@@ -131,7 +131,7 @@ export default function Projects() {
   return (
     <section id="projects" className="shell py-20 md:py-32">
       <SectionHeading
-        index="04"
+        index="05"
         title="Selected Work"
         kicker="From a live SaaS product to AI pipelines and conversational tooling."
       />

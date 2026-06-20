@@ -6,7 +6,7 @@ export default function Experience() {
   return (
     <section id="experience" className="shell py-20 md:py-32">
       <SectionHeading
-        index="03"
+        index="04"
         title="Experience"
         kicker="Where I've shipped, and what I shipped there."
       />

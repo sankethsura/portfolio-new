@@ -15,7 +15,7 @@ export default function Contact() {
   return (
     <section id="contact" className="border-t border-line bg-ink text-bg">
       <div className="shell py-24 md:py-36">
-        <p className="label text-faint">05 — Contact</p>
+        <p className="label text-faint">06 — Contact</p>
 
         <h2 className="mt-8 font-display text-[clamp(2.6rem,9vw,9rem)] font-medium uppercase leading-[0.92] tracking-tight">
           <RevealLine>Let&apos;s build</RevealLine>
@@ -43,7 +43,7 @@ export default function Contact() {
           </Magnetic>
         </Reveal>
 
-        <div className="mt-20 grid grid-cols-2 gap-px border border-bg/15 bg-bg/15 md:grid-cols-4">
+        <div className="mt-16 grid grid-cols-1 gap-px border border-bg/15 bg-bg/15 sm:mt-20 sm:grid-cols-2 xl:grid-cols-4">
           {links.map((l, i) => (
             <Reveal
               key={l.label}
@@ -57,9 +57,9 @@ export default function Contact() {
                 className="group flex h-full flex-col gap-2 p-6 transition-colors hover:bg-bg/5"
               >
                 <span className="label text-faint">{l.label}</span>
-                <span className="flex items-center justify-between text-base text-bg group-hover:text-accent">
-                  {l.value}
-                  <span className="opacity-0 transition-opacity group-hover:opacity-100">
+                <span className="flex items-center justify-between gap-2 text-base text-bg group-hover:text-accent">
+                  <span className="min-w-0 break-words">{l.value}</span>
+                  <span className="shrink-0 opacity-0 transition-opacity group-hover:opacity-100">
                     →
                   </span>
                 </span>

@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import ScrambleText from "./ScrambleText";
 
 export default function SectionHeading({ index, title, kicker }) {
   return (
@@ -7,7 +8,9 @@ export default function SectionHeading({ index, title, kicker }) {
         <span className="font-display text-sm font-medium text-accent">
           {index}
         </span>
-        <h2 className="display text-[clamp(2rem,5.5vw,4.25rem)]">{title}</h2>
+        <h2 className="display text-[clamp(2rem,5.5vw,4.25rem)]">
+          <ScrambleText text={title} />
+        </h2>
       </Reveal>
       {kicker && (
         <Reveal delay={0.1}>

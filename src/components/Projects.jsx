@@ -125,13 +125,120 @@ function FeaturedCard() {
   );
 }
 
-export default function Projects() {
-  const [active, setActive] = useState(null);
+function GridCard({ p, i }) {
+  const ref = useRef(null);
+  const [hover, setHover] = useState(false);
 
+  // cursor-driven 3D tilt (subtler than the featured card)
+  const mx = useMotionValue(0.5);
+  const my = useMotionValue(0.5);
+  const rotateX = useSpring(useTransform(my, [0, 1], [3.5, -3.5]), {
+    stiffness: 150,
+    damping: 18,
+  });
+  const rotateY = useSpring(useTransform(mx, [0, 1], [-4, 4]), {
+    stiffness: 150,
+    damping: 18,
+  });
+
+  const onMove = (e) => {
+    const r = ref.current?.getBoundingClientRect();
+    if (!r) return;
+    mx.set((e.clientX - r.left) / r.width);
+    my.set((e.clientY - r.top) / r.height);
+  };
+  const reset = () => {
+    mx.set(0.5);
+    my.set(0.5);
+    setHover(false);
+  };
+
+  return (
+    <Reveal
+      delay={(i % 2) * 0.08}
+      className="bg-bg"
+      style={{ perspective: 1000 }}
+    >
+      <motion.article
+        ref={ref}
+        onMouseEnter={() => setHover(true)}
+        onMouseMove={onMove}
+        onMouseLeave={reset}
+        data-cursor="hover"
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        className="group relative flex h-full flex-col justify-between overflow-hidden p-7 md:p-10"
+      >
+        {/* hover wash */}
+        <motion.span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-ink"
+          initial={false}
+          animate={{ opacity: hover ? 1 : 0 }}
+          transition={{ duration: 0.45, ease }}
+        />
+
+        <div
+          className={`relative z-10 transition-colors duration-300 ${
+            hover ? "text-bg" : "text-ink"
+          }`}
+        >
+          <div className="flex items-start justify-between">
+            <span className="font-display text-sm font-medium text-accent">
+              {p.index}
+            </span>
+            {(p.metric || p.status) && (
+              <span
+                className={`rounded-full border px-3 py-1 text-xs ${
+                  hover ? "border-bg/30 text-bg/80" : "border-line text-muted"
+                }`}
+              >
+                {p.status ?? p.metric}
+              </span>
+            )}
+          </div>
+
+          <h3 className="mt-10 font-display text-[clamp(1.5rem,3vw,2.1rem)] font-medium leading-tight tracking-tight md:mt-16">
+            {p.title}
+          </h3>
+          <p
+            className={`mt-1 font-serif-acc text-lg italic ${
+              hover ? "text-accent" : "text-accent-ink"
+            }`}
+          >
+            {p.tagline}
+          </p>
+
+          <p
+            className={`mt-5 max-w-md text-[0.95rem] leading-relaxed transition-colors duration-300 ${
+              hover ? "text-bg/70" : "text-muted"
+            }`}
+          >
+            {p.description}
+          </p>
+        </div>
+
+        <div className="relative z-10 mt-8 flex flex-wrap gap-2">
+          {p.tags.map((t) => (
+            <span
+              key={t}
+              className={`rounded-full border px-3 py-1 text-xs transition-colors duration-300 ${
+                hover ? "border-bg/25 text-bg/80" : "border-line text-muted"
+              }`}
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </motion.article>
+    </Reveal>
+  );
+}
+
+export default function Projects() {
   return (
     <section id="projects" className="shell py-20 md:py-32">
       <SectionHeading
-        index="05"
+        index="06"
         title="Selected Work"
         kicker="From a live SaaS product to AI pipelines and conversational tooling."
       />
@@ -140,80 +247,7 @@ export default function Projects() {
 
       <div className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:mt-8 md:grid-cols-2">
         {projects.map((p, i) => (
-          <Reveal key={p.index} delay={(i % 2) * 0.08} className="bg-bg">
-            <motion.article
-              onMouseEnter={() => setActive(p.index)}
-              onMouseLeave={() => setActive(null)}
-              data-cursor="hover"
-              className="group relative flex h-full flex-col justify-between overflow-hidden p-7 md:p-10"
-            >
-              {/* hover wash */}
-              <motion.span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-ink"
-                initial={false}
-                animate={{ opacity: active === p.index ? 1 : 0 }}
-                transition={{ duration: 0.45, ease }}
-              />
-
-              <div
-                className={`relative z-10 transition-colors duration-300 ${
-                  active === p.index ? "text-bg" : "text-ink"
-                }`}
-              >
-                <div className="flex items-start justify-between">
-                  <span className="font-display text-sm font-medium text-accent">
-                    {p.index}
-                  </span>
-                  {(p.metric || p.status) && (
-                    <span
-                      className={`rounded-full border px-3 py-1 text-xs ${
-                        active === p.index
-                          ? "border-bg/30 text-bg/80"
-                          : "border-line text-muted"
-                      }`}
-                    >
-                      {p.status ?? p.metric}
-                    </span>
-                  )}
-                </div>
-
-                <h3 className="mt-10 font-display text-[clamp(1.5rem,3vw,2.1rem)] font-medium leading-tight tracking-tight md:mt-16">
-                  {p.title}
-                </h3>
-                <p
-                  className={`mt-1 font-serif-acc text-lg italic ${
-                    active === p.index ? "text-accent" : "text-accent-ink"
-                  }`}
-                >
-                  {p.tagline}
-                </p>
-
-                <p
-                  className={`mt-5 max-w-md text-[0.95rem] leading-relaxed transition-colors duration-300 ${
-                    active === p.index ? "text-bg/70" : "text-muted"
-                  }`}
-                >
-                  {p.description}
-                </p>
-              </div>
-
-              <div className="relative z-10 mt-8 flex flex-wrap gap-2">
-                {p.tags.map((t) => (
-                  <span
-                    key={t}
-                    className={`rounded-full border px-3 py-1 text-xs transition-colors duration-300 ${
-                      active === p.index
-                        ? "border-bg/25 text-bg/80"
-                        : "border-line text-muted"
-                    }`}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </motion.article>
-          </Reveal>
+          <GridCard key={p.index} p={p} i={i} />
         ))}
       </div>
     </section>

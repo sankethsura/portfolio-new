@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { navLinks, profile } from "@/lib/data";
+import Magnetic from "./Magnetic";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,27 +37,30 @@ export default function Nav() {
             Sanketh<span className="text-accent">.</span>
           </a>
 
-          <div className="hidden items-center gap-9 md:flex">
+          <div className="hidden items-center gap-2 md:flex">
             {navLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="link-sweep text-sm font-medium text-ink-soft"
-              >
-                {l.label}
-              </a>
+              <Magnetic key={l.href} strength={0.4} className="px-3 py-1">
+                <a
+                  href={l.href}
+                  className="link-sweep text-sm font-medium text-ink-soft"
+                >
+                  {l.label}
+                </a>
+              </Magnetic>
             ))}
-            <a
-              href={profile.resume}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full border border-ink px-4 py-2 text-sm font-medium transition-colors hover:bg-ink hover:text-bg"
-            >
-              Résumé
-              <span className="transition-transform group-hover:translate-x-0.5">
-                ↗
-              </span>
-            </a>
+            <Magnetic strength={0.3} className="ml-3">
+              <a
+                href={profile.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 rounded-full border border-ink px-4 py-2 text-sm font-medium transition-colors hover:bg-ink hover:text-bg"
+              >
+                Résumé
+                <span className="transition-transform group-hover:translate-x-0.5">
+                  ↗
+                </span>
+              </a>
+            </Magnetic>
           </div>
 
           <button

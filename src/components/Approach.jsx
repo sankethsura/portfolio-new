@@ -1,6 +1,7 @@
 import { principles } from "@/lib/data";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import Spotlight from "./Spotlight";
 
 export default function Approach() {
   return (
@@ -14,7 +15,7 @@ export default function Approach() {
       <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:mt-24 md:grid-cols-2">
         {principles.map((p, i) => (
           <Reveal key={p.n} delay={(i % 2) * 0.08} className="bg-bg">
-            <div className="group relative flex h-full flex-col gap-4 overflow-hidden p-7 md:p-10">
+            <Spotlight className="group flex h-full flex-col gap-4 overflow-hidden p-7 md:p-10">
               {/* large faint index watermark */}
               <span
                 aria-hidden
@@ -30,7 +31,7 @@ export default function Approach() {
               <p className="relative z-10 max-w-md text-[0.97rem] leading-relaxed text-muted">
                 {p.body}
               </p>
-            </div>
+            </Spotlight>
           </Reveal>
         ))}
       </div>

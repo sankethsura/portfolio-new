@@ -15,7 +15,7 @@ export default function Contact() {
   return (
     <section id="contact" className="border-t border-line bg-ink text-bg">
       <div className="shell py-24 md:py-36">
-        <p className="label text-faint">06 — Contact</p>
+        <p className="label text-faint">07 — Contact</p>
 
         <h2 className="mt-8 font-display text-[clamp(2.6rem,9vw,9rem)] font-medium uppercase leading-[0.92] tracking-tight">
           <RevealLine>Let&apos;s build</RevealLine>

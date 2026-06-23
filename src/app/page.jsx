@@ -6,6 +6,8 @@ import Stats from "@/components/Stats";
 import Skills from "@/components/Skills";
 import Approach from "@/components/Approach";
 import Experience from "@/components/Experience";
+import Education from "@/components/Education";
+import TrustedBy from "@/components/TrustedBy";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -22,6 +24,8 @@ export default function Home() {
         <Skills />
         <Approach />
         <Experience />
+        <Education />
+        <TrustedBy />
         <Projects />
         <Contact />
       </main>

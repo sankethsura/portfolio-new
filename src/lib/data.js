@@ -6,7 +6,7 @@ export const profile = {
   email: "sanketh.sura.1@gmail.com",
   phone: "+91 9686274029",
   linkedin: "https://www.linkedin.com/in/sanketh-sura-5b0b90178/",
-  github: "https://github.com/", // update with your handle
+  github: "https://github.com/sankethsura",
   resume: "/sanketh-resume.pdf",
   available: true,
   tagline:
@@ -50,6 +50,25 @@ export const principles = [
     body: "Ship a focused first version, learn from actual users and data, then expand. I'd rather validate the core than over-build features nobody asked for.",
   },
 ];
+
+export const clients = [
+  "Expertia AI",
+  "YuVerse",
+  "Reliance Industries",
+  "Naukri.com",
+  "ZingHR",
+  "Ola Krutrim",
+];
+
+export const education = {
+  degree: "Bachelor of Civil Engineering",
+  school: "JNNCE, Shimoga",
+  period: "2014 — 2018",
+  pivot: [
+    "I started out in Civil Engineering — but found my craft in code.",
+    "Self-taught across the MERN stack, Next.js, and applied AI, I turned curiosity into a career building production systems used by millions. The engineering mindset stayed; the medium changed.",
+  ],
+};
 
 export const skills = [
   {
